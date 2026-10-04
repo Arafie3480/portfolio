@@ -1,0 +1,51 @@
+﻿# راهنمای تکمیل اطلاعات تماس
+
+## اطلاعات تماس در فایل index.html باید ویرایش بشن:
+
+### خط ۳۶۳ - ایمیل:
+قبلی: href="mailto:your.email@example.com"
+بعدی: href="mailto:آدرس_ایمیل_واقعیت@gmail.com"
+
+### خط ۳۶۸ - تلگرام:
+قبلی: href="https://t.me/yourusername"
+بعدی: href="https://t.me/یوزرنیم_تلگرام_بدون_@"
+
+### خط ۳۷۳ - لینکدین:
+قبلی: href="https://linkedin.com/in/yourprofile"
+بعدی: href="https://linkedin.com/in/یوزرنیم_لینکدین"
+
+### خط ۳۷۸ - گیت‌هاب:
+قبلی: href="https://github.com/yourusername"
+بعدی: href="https://github.com/یوزرنیم_گیت‌هاب"
+
+## نحوه ویرایش:
+
+1. فایل index.html رو باز کن
+2. خطوط بالا رو پیدا کن (Ctrl+G و شماره خط)
+3. مقادیر placeholder رو با اطلاعات واقعیت جایگزین کن
+4. ذخیره کن
+
+## بعد از ویرایش:
+
+git add index.html
+git commit -m "Update contact information"
+git push
+
+## وضعیت فعلی:
+✅ ساختار HTML اضافه شد
+✅ استایل‌های CSS اضافه شد
+✅ Git repository راه‌اندازی شد
+✅ اولین کامیت انجام شد
+⏳ اطلاعات تماس واقعی باید توسط تو وارد بشه
+⏳ دپلوی روی GitHub Pages یا Vercel
+
+## برای دپلوی سریع روی Vercel:
+
+1. برو به vercel.com
+2. با GitHub لاگین کن
+3. این پوشه رو به GitHub push کن
+4. در Vercel، Import Project رو بزن
+5. تمام!
+
+سایتت در چند ثانیه آنلاین می‌شه با یک آدرس مثل:
+https://portfolio-username.vercel.app

@@ -86,6 +86,9 @@ body[data-design="editorial"] .tags span{background:#e9ded1;color:#65554a}
 body[data-design="editorial"] .about-section{background:#e9ddcf}
 body[data-design="editorial"] .about-portrait img{border-radius:0;box-shadow:15px 16px 0 #c69e85}
 body[data-design="editorial"] .skill-list span{background:#f4ebdf;border-color:#d3c1ae;border-radius:0}
+body[data-design="editorial"] .skill-chip{background:#f4ebdf;border-color:#d3c1ae}
+body[data-design="editorial"] .skill-chip .skill-name{color:#322e2a}
+body[data-design="editorial"] .skill-chip small{color:#766d65}
 body[data-design="editorial"] .approach-section{background:var(--paper)}
 body[data-design="editorial"] .approach-icon,body[data-design="editorial"] .approach-item>span{color:#a55333}
 body[data-design="editorial"] .contact-panel{background:#3b302b;border-radius:0}
@@ -173,14 +176,12 @@ body[data-design="electric"] .editor-run-btn{color:#08162d}
 body[data-design="electric"] .editor-run-btn:hover{background:#a1eafd}
 body[data-design="electric"] .editor-panels,body[data-design="electric"] .code-editor{background:#0c1b35;color:#edf5ff}
 body[data-design="electric"] .skills-section::before{background:radial-gradient(circle,#55d7fa20,transparent 70%)}
-body[data-design="electric"] .skill-item{background:#142442;border-color:#33496f}
-body[data-design="electric"] .skill-item:hover{border-color:#55d7fa;box-shadow:0 12px 30px #0004}
-body[data-design="electric"] .skill-name{color:#edf5ff}
-body[data-design="electric"] .skill-percent{color:#55d7fa;background:#55d7fa1f}
-body[data-design="electric"] .skill-bar{background:#263c60}
-body[data-design="electric"] .skill-progress{background:linear-gradient(90deg,#3175c5,#55d7fa);box-shadow:0 0 10px #55d7fa55}
+body[data-design="electric"] .skill-chip{background:#142442;border-color:#33496f}
+body[data-design="electric"] .skill-chip:hover{border-color:#55d7fa;box-shadow:0 12px 30px #0004}
+body[data-design="electric"] .skill-chip .skill-name{color:#edf5ff}
+body[data-design="electric"] .skill-chip small{color:#a8b9d1}
 body[data-design="electric"] .project-card::before{background:linear-gradient(135deg,#55d7fa15,transparent)}
-body[data-design="electric"] .reading-progress{background:linear-gradient(90deg,#3175c5,#55d7fa);box-shadow:0 0 10px #55d7fa88}
+body[data-design="electric"] .reading-progress{background:linear-gradient(90deg,#3175c5,#55d7fa)}
 body[data-design="electric"] .project-dialog{background:#142442;color:#edf5ff}
 body[data-design="electric"] .dialog-close{background:#213a61;color:#edf5ff;border-color:#456389}
 body[data-design="electric"] .dialog-close:hover{background:#55d7fa;color:#08162d}
@@ -228,8 +229,8 @@ body[data-design="electric"] .live-editor-section{padding-block:92px}
 body[data-design="electric"] .live-editor-container{box-shadow:0 24px 70px #02081766}
 body[data-design="electric"] .editor-tab,body[data-design="electric"] .editor-run-btn{min-height:44px}
 body[data-design="electric"] iframe#preview-frame{height:300px}
-body[data-design="electric"] .skill-item{box-shadow:0 15px 36px #02081722}
-body[data-design="electric"] .skill-item:hover{transform:translateY(-4px)}
+body[data-design="electric"] .skill-chip{box-shadow:0 15px 36px #02081722}
+body[data-design="electric"] .skill-chip:hover{transform:translateY(-4px)}
 body[data-design="electric"] .dialog-close{min-width:44px;min-height:44px}
 body[data-design="electric"] .project-card{overflow:clip;box-shadow:0 22px 60px #02081745}
 body[data-design="electric"] .project-card::after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid transparent;border-radius:inherit;background:linear-gradient(135deg,#55d7fa18,transparent 38%,transparent 70%,#55d7fa0d);opacity:0;transition:opacity .25s ease,border-color .25s ease}
@@ -251,7 +252,7 @@ body[data-design="electric"] .project-card:hover::after,body[data-design="electr
     transform: translateX(-120%);
   }
 }
-body[data-design="electric"] .live-editor-container,body[data-design="electric"] .skill-item,body[data-design="electric"] .project-dialog{isolation:isolate;box-shadow:0 22px 60px #02081745}
+body[data-design="electric"] .live-editor-container,body[data-design="electric"] .skill-chip,body[data-design="electric"] .project-dialog{isolation:isolate;box-shadow:0 22px 60px #02081745}
 body[data-design="electric"] .design-option:focus-visible,body[data-design="electric"] .filter:focus-visible,body[data-design="electric"] .editor-tab:focus-visible,body[data-design="electric"] .editor-run-btn:focus-visible,body[data-design="electric"] .project-art:focus-visible,body[data-design="electric"] .round-arrow:focus-visible,body[data-design="electric"] .button:focus-visible,body[data-design="electric"] .nav-contact:focus-visible,body[data-design="electric"] .menu-toggle:focus-visible{outline:3px solid #55d7fa;outline-offset:3px;box-shadow:0 0 0 6px #55d7fa26}
 @media(max-width:620px){body[data-design="electric"] .section-space{padding-block:76px}body[data-design="electric"] .filters{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px}body[data-design="electric"] .work-section .filter{white-space:normal;border-radius:10px;font-size:13px}body[data-design="electric"] iframe#preview-frame{height:260px}body[data-design="electric"] .editor-panels,body[data-design="electric"] .editor-panel{min-height:300px;height:300px}body[data-design="electric"] .live-editor-section{padding-block:76px}}
 
@@ -261,21 +262,21 @@ body[data-design="electric"] .design-option:focus-visible,body[data-design="elec
 
 body[data-design="studio"] .design-option,
 body[data-design="studio"] .project-card,
-body[data-design="studio"] .skill-item,
+body[data-design="studio"] .skill-chip,
 body[data-design="studio"] .contact-panel {
   border-radius: 18px 6px 18px 6px;
 }
 
 body[data-design="editorial"] .design-option,
 body[data-design="editorial"] .project-card,
-body[data-design="editorial"] .skill-item,
+body[data-design="editorial"] .skill-chip,
 body[data-design="editorial"] .contact-panel {
   border-radius: 0 18px 0 18px;
 }
 
 body[data-design="electric"] .design-option,
 body[data-design="electric"] .project-card,
-body[data-design="electric"] .skill-item,
+body[data-design="electric"] .skill-chip,
 body[data-design="electric"] .contact-panel {
   border-radius: 18px 5px 18px 5px;
 }
@@ -441,8 +442,8 @@ body[data-design="electric"] .design-option:hover {
     padding-block: 104px;
   }
 
-  body[data-design="studio"] .skill-item {
-    padding: 30px;
+  body[data-design="studio"] .skill-chip {
+    padding: 22px 24px;
   }
 
   body[data-design="editorial"] .brand-symbol {
@@ -498,8 +499,8 @@ body[data-design="electric"] .design-option:hover {
     padding-block: 102px;
   }
 
-  body[data-design="editorial"] .skill-item {
-    padding: 30px;
+  body[data-design="editorial"] .skill-chip {
+    padding: 22px 24px;
     border-radius: 0;
   }
 
@@ -586,8 +587,8 @@ body[data-design="electric"] .design-option:hover {
     padding-block: 106px;
   }
 
-  body[data-design="electric"] .skill-item {
-    padding: 30px;
+  body[data-design="electric"] .skill-chip {
+    padding: 22px 24px;
     border-radius: 12px;
   }
 }

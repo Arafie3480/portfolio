@@ -305,7 +305,7 @@ img{max-width:100%;display:block}
 }
 
 /* ========================================
-   SKILLS SECTION WITH ANIMATED BARS
+   SKILLS CLOUD
    ======================================== */
 
 .skills-section {
@@ -322,91 +322,48 @@ img{max-width:100%;display:block}
   height: 400px;
   background: radial-gradient(circle, rgba(109, 156, 41, 0.08), transparent 70%);
   border-radius: 50%;
-  animation: float 8s ease-in-out infinite;
 }
 
-.skills-grid {
+.skills-cloud {
+  list-style: none;
+  margin: 34px 0 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  gap: 30px;
-  margin-top: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 12px;
 }
 
-.skill-item {
-  padding: 25px;
-  background: white;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  transition: all 0.4s ease;
-}
-
-.skill-item.animate-in {
-  animation: fadeInUp 0.6s ease backwards;
-}
-
-.skill-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  border-color: var(--lime);
-}
-
-.skill-header {
+.skill-chip {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 92px;
+  padding: 18px 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 
-.skill-name {
+.skill-chip:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--lime) 55%, var(--line));
+  box-shadow: 0 12px 28px rgba(20, 26, 30, .08);
+}
+
+.skill-chip .skill-name {
   font-weight: 700;
-  font-size: 16px;
-  color: var(--dark);
+  font-size: 15px;
+  color: var(--ink);
+  direction: ltr;
+  text-align: start;
 }
 
-.skill-percent {
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--lime);
-  background: rgba(208, 238, 132, 0.15);
-  padding: 4px 12px;
-  border-radius: 20px;
+.skill-chip small {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
 }
-
-.skill-bar {
-  height: 12px;
-  background: #e8ede8;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(90deg, #6d9c29, var(--lime));
-  border-radius: 10px;
-  width: 0%;
-  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  box-shadow: 0 0 10px rgba(208, 238, 132, 0.5);
-}
-
-.skill-progress::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: shimmer 2s 2;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.skill-item.animate-in .skill-progress { width: var(--progress); }
 
 /* ========================================
    3D CARD EFFECTS FOR PROJECTS
@@ -454,7 +411,6 @@ img{max-width:100%;display:block}
   background: linear-gradient(90deg, var(--lime), #6d9c29);
   width: 0%;
   transition: width 0.1s ease;
-  box-shadow: 0 0 10px rgba(208, 238, 132, 0.6);
 }
 
 /* ========================================
@@ -490,13 +446,14 @@ img{max-width:100%;display:block}
     height: 300px;
   }
   
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .skills-cloud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
-  
-  .skill-item {
-    padding: 20px;
+
+  .skill-chip {
+    min-height: 84px;
+    padding: 16px;
   }
 }
 
@@ -566,8 +523,7 @@ body[data-design="electric"][data-language="en"] .mobile-nav:not([hidden]){direc
 .live-preview { border-top: 0; border-inline-start: 1px solid rgba(208, 238, 132, .15); }
 #preview-frame { height: 430px; }
 
-.skills-grid { gap: 18px; margin-top: 34px; }
-.skill-item { padding: 21px; }
+.skills-cloud { margin-top: 28px; }
 
 .contact-panel { min-height: 410px; justify-content: center; }
 

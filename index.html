@@ -12,9 +12,9 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/fonts/iransansx/IRANSansXFaNum-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/rokh/Rokh-Bold.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=7" />
-    <link rel="stylesheet" href="designs.css?v=7" />
-    <script src="script.js?v=7" defer></script>
+    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="designs.css?v=8" />
+    <script src="script.js?v=8" defer></script>
   </head>
   <body id="top" data-design="electric">
     <a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
@@ -87,172 +87,6 @@
       <section class="capabilities container" aria-label="حوزه‌های فعالیت">
         <span>آنچه در کارهایم می‌بینید</span>
         <div><span>طراحی رابط کاربری</span><i>✳</i><span>توسعه فرانت‌اند</span><i>✳</i><span>جاوااسکریپت تعاملی</span><i>✳</i><span>نرم‌افزار کاربردی</span></div>
-      </section>
-
-      <!-- Live Code Editor Section -->
-      <section class="live-editor-section section-space" id="live-code" aria-labelledby="live-code-title">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <div class="section-kicker"><span>LIVE CODE</span><span class="tiny-line"></span> ویرایشگر زنده</div>
-              <h2 id="live-code-title">کد بنویسید، <em>نتیجه را ببینید.</em></h2>
-            </div>
-            <p>یک ویرایشگر کد تعاملی که تغییرات شما را به صورت لحظه‌ای نمایش می‌دهد.</p>
-          </div>
-          
-          <div class="live-editor-container">
-            <div class="editor-tabs">
-              <button class="editor-tab active" type="button" data-lang="html" aria-pressed="true">HTML</button>
-              <button class="editor-tab" type="button" data-lang="css" aria-pressed="false">CSS</button>
-              <button class="editor-tab" type="button" data-lang="js" aria-pressed="false">JavaScript</button>
-              <button class="editor-run-btn" type="button">▶ اجرا</button>
-            </div>
-            
-            <div class="editor-panels">
-              <div class="editor-panel active" data-lang="html">
-                <textarea class="code-editor" id="html-editor" aria-label="کد HTML" spellcheck="false"><!DOCTYPE html>
-<html dir="rtl">
-<head>
-  <title>دمو</title>
-</head>
-<body>
-  <div class="container">
-    <h1>سلام دنیا! 👋</h1>
-    <p>این یک دمو زنده است.</p>
-    <button onclick="changeColor()">تغییر رنگ</button>
-  </div>
-</body>
-</html></textarea>
-              </div>
-              
-              <div class="editor-panel" data-lang="css">
-                <textarea class="code-editor" id="css-editor" aria-label="کد CSS" spellcheck="false">body {
-  margin: 0;
-  min-height: 100vh;
-  box-sizing: border-box;
-  padding: 12px;
-  display: grid;
-  place-items: center;
-  background: #0b1a39;
-  color: #edf5ff;
-  font-family: Tahoma, Arial, sans-serif;
-}
-
-.container {
-  width: min(100%, 560px);
-  box-sizing: border-box;
-  text-align: center;
-  padding: 20px 24px;
-  border: 1px solid #55d7fa55;
-  border-radius: 28px 8px 28px 8px;
-  background: linear-gradient(145deg, #172d52, #0b1a39);
-  box-shadow: 0 24px 60px #02081766;
-}
-
-h1 { color: #55d7fa; font-size: clamp(24px, 6vw, 36px); margin: 0 0 8px; }
-p { color: #b6c9e4; line-height: 1.8; margin: 0; }
-button {
-  margin-top: 12px;
-  background: #55d7fa;
-  color: #08162d;
-  border: 0;
-  padding: 10px 20px;
-  font: bold 14px Tahoma, Arial, sans-serif;
-  border-radius: 999px 8px 999px 8px;
-  cursor: pointer;
-}
-button:focus-visible { outline: 3px solid white; outline-offset: 4px; }</textarea>
-              </div>
-              
-              <div class="editor-panel" data-lang="js">
-                <textarea class="code-editor" id="js-editor" aria-label="کد JavaScript" spellcheck="false">function changeColor() {
-  const colors = ['#126f94', '#3175c5', '#174477', '#824bc7', '#087e83'];
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  document.querySelector('h1').style.color = randomColor;
-}</textarea>
-              </div>
-            </div>
-            
-            <div class="live-preview">
-              <div class="preview-label">پیش‌نمایش زنده</div>
-              <iframe id="preview-frame" title="پیش‌نمایش کد" sandbox="allow-scripts"></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills Section with Animated Bars -->
-      <section class="skills-section section-space" aria-labelledby="skills-title">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <div class="section-kicker"><span>SKILLS</span><span class="tiny-line"></span> مهارت‌ها</div>
-              <h2 id="skills-title">تخصص‌های من در <em>توسعه وب.</em></h2>
-            </div>
-          </div>
-          
-          <div class="skills-grid">
-            <div class="skill-item">
-              <div class="skill-header">
-                <span class="skill-name">HTML & CSS</span>
-                <span class="skill-percent">95%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="95"></div>
-              </div>
-            </div>
-            
-            <div class="skill-item">
-              <div class="skill-header">
-                <span class="skill-name">JavaScript</span>
-                <span class="skill-percent">90%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="90"></div>
-              </div>
-            </div>
-            
-            <div class="skill-item">
-              <div class="skill-header">
-                <span class="skill-name">Python</span>
-                <span class="skill-percent">88%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="88"></div>
-              </div>
-            </div>
-            
-            <div class="skill-item">
-              <div class="skill-header">
-                <span class="skill-name">React & Next.js</span>
-                <span class="skill-percent">85%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="85"></div>
-              </div>
-            </div>
-            
-            <div class="skill-item">
-              <div class="skill-header">
-                <span class="skill-name">UI/UX Design</span>
-                <span class="skill-percent">92%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="92"></div>
-              </div>
-            </div>
-            
-            <div class="skill-item">
-              <div class="skill-header">
-                <span class="skill-name">Git & GitHub</span>
-                <span class="skill-percent">87%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="87"></div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <section class="work-section section-space" id="work" aria-labelledby="work-title">
@@ -341,6 +175,117 @@ button:focus-visible { outline: 3px solid white; outline-offset: 4px; }</textare
         </div>
       </section>
 
+      <section class="skills-section section-space" aria-labelledby="skills-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker"><span>SKILLS</span><span class="tiny-line"></span> مهارت‌ها</div>
+              <h2 id="skills-title">ابزارهایی که با آن‌ها <em>می‌سازم.</em></h2>
+            </div>
+            <p>ترکیبی از طراحی رابط، فرانت‌اند و منطق نرم‌افزار که در پروژه‌های بالا به‌کار می‌برم.</p>
+          </div>
+          <ul class="skills-cloud" role="list">
+            <li class="skill-chip"><span class="skill-name">HTML &amp; CSS</span><small>رابط و چیدمان</small></li>
+            <li class="skill-chip"><span class="skill-name">JavaScript</span><small>تعامل مرورگر</small></li>
+            <li class="skill-chip"><span class="skill-name">React &amp; Next.js</span><small>اپلیکیشن وب</small></li>
+            <li class="skill-chip"><span class="skill-name">Python</span><small>نرم‌افزار کاربردی</small></li>
+            <li class="skill-chip"><span class="skill-name">UI / UX</span><small>ساختار تجربه</small></li>
+            <li class="skill-chip"><span class="skill-name">Git &amp; GitHub</span><small>نسخه‌بندی</small></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="live-editor-section section-space" id="live-code" aria-labelledby="live-code-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker"><span>LIVE CODE</span><span class="tiny-line"></span> ویرایشگر زنده</div>
+              <h2 id="live-code-title">کد بنویسید، <em>نتیجه را ببینید.</em></h2>
+            </div>
+            <p>یک ویرایشگر کد تعاملی که تغییرات شما را به صورت لحظه‌ای نمایش می‌دهد.</p>
+          </div>
+
+          <div class="live-editor-container">
+            <div class="editor-tabs">
+              <button class="editor-tab active" type="button" data-lang="html" aria-pressed="true">HTML</button>
+              <button class="editor-tab" type="button" data-lang="css" aria-pressed="false">CSS</button>
+              <button class="editor-tab" type="button" data-lang="js" aria-pressed="false">JavaScript</button>
+              <button class="editor-run-btn" type="button">▶ اجرا</button>
+            </div>
+
+            <div class="editor-panels">
+              <div class="editor-panel active" data-lang="html">
+                <textarea class="code-editor" id="html-editor" aria-label="کد HTML" spellcheck="false"><!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <title>دمو</title>
+</head>
+<body>
+  <div class="container">
+    <h1>سلام دنیا!</h1>
+    <p>این یک دمو زنده است.</p>
+    <button onclick="changeColor()">تغییر رنگ</button>
+  </div>
+</body>
+</html></textarea>
+              </div>
+
+              <div class="editor-panel" data-lang="css">
+                <textarea class="code-editor" id="css-editor" aria-label="کد CSS" spellcheck="false">body {
+  margin: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 12px;
+  display: grid;
+  place-items: center;
+  background: #0b1a39;
+  color: #edf5ff;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.container {
+  width: min(100%, 560px);
+  box-sizing: border-box;
+  text-align: center;
+  padding: 20px 24px;
+  border: 1px solid #55d7fa55;
+  border-radius: 28px 8px 28px 8px;
+  background: linear-gradient(145deg, #172d52, #0b1a39);
+  box-shadow: 0 24px 60px #02081766;
+}
+
+h1 { color: #55d7fa; font-size: clamp(24px, 6vw, 36px); margin: 0 0 8px; }
+p { color: #b6c9e4; line-height: 1.8; margin: 0; }
+button {
+  margin-top: 12px;
+  background: #55d7fa;
+  color: #08162d;
+  border: 0;
+  padding: 10px 20px;
+  font: bold 14px Tahoma, Arial, sans-serif;
+  border-radius: 999px 8px 999px 8px;
+  cursor: pointer;
+}
+button:focus-visible { outline: 3px solid white; outline-offset: 4px; }</textarea>
+              </div>
+
+              <div class="editor-panel" data-lang="js">
+                <textarea class="code-editor" id="js-editor" aria-label="کد JavaScript" spellcheck="false">function changeColor() {
+  const colors = ['#126f94', '#3175c5', '#174477', '#824bc7', '#087e83'];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  document.querySelector('h1').style.color = randomColor;
+}</textarea>
+              </div>
+            </div>
+
+            <div class="live-preview">
+              <div class="preview-label">پیش‌نمایش زنده</div>
+              <iframe id="preview-frame" title="پیش‌نمایش کد" sandbox="allow-scripts"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="about-section section-space" id="about" aria-labelledby="about-title">
         <div class="container about-grid">
           <div class="about-title-side"><div class="section-kicker"><span>02 / ABOUT ME</span><span class="tiny-line"></span> کمی درباره من</div><h2 id="about-title">کنجکاوی،<br /><em>پایه‌ی ساختن است.</em></h2><div class="about-portrait"><img src="assets/amirhossein-portrait.jpeg" alt="پرتره امیرحسین محمدرفیع در بخش درباره من" width="150" height="150" loading="lazy" /><span lang="en" dir="ltr">DEV BY AMIR <i>✳</i></span></div></div>
@@ -360,23 +305,23 @@ button:focus-visible { outline: 3px solid white; outline-offset: 4px; }</textare
             </a>
             
             <div class="contact-methods">
-              <a href="mailto:your.email@example.com" class="contact-item" target="_blank" rel="noopener noreferrer" title="ایمیل">
-                <span class="contact-icon">✉</span>
+              <a href="mailto:rafie2002.dev@gmail.com" class="contact-item" aria-label="ایمیل: rafie2002.dev@gmail.com">
+                <span class="contact-icon" aria-hidden="true">✉</span>
                 <span class="contact-label">ایمیل</span>
               </a>
-              
-              <a href="https://t.me/yourusername" class="contact-item" target="_blank" rel="noopener noreferrer" title="تلگرام">
-                <span class="contact-icon">✈</span>
+
+              <a href="https://t.me/AmirDev3480" class="contact-item" target="_blank" rel="noopener noreferrer" aria-label="تلگرام: @AmirDev3480">
+                <span class="contact-icon" aria-hidden="true">✈</span>
                 <span class="contact-label">تلگرام</span>
               </a>
-              
-              <a href="https://linkedin.com/in/yourprofile" class="contact-item" target="_blank" rel="noopener noreferrer" title="لینکدین">
-                <span class="contact-icon">in</span>
-                <span class="contact-label">لینکدین</span>
+
+              <a href="https://instagram.com/dev_by_amir" class="contact-item" target="_blank" rel="noopener noreferrer" aria-label="اینستاگرام: @dev_by_amir">
+                <span class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
+                <span class="contact-label">اینستاگرام</span>
               </a>
-              
-              <a href="https://github.com/yourusername" class="contact-item" target="_blank" rel="noopener noreferrer" title="گیت‌هاب">
-                <span class="contact-icon">⌘</span>
+
+              <a href="https://github.com/Arafie3480" class="contact-item" target="_blank" rel="noopener noreferrer" aria-label="گیت‌هاب: Arafie3480">
+                <span class="contact-icon" aria-hidden="true">⌘</span>
                 <span class="contact-label">گیت‌هاب</span>
               </a>
             </div>

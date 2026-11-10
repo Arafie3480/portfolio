@@ -105,7 +105,13 @@ function applyProjectFilter(category, activeButton) {
   });
   if (projectResults) {
     const visibleCount = [...cards].filter((card) => !card.hidden).length;
-    projectResults.textContent = `${projectNumberFormat.format(visibleCount)} پروژه برای بررسی`;
+    const isEnglish = document.body.dataset.language === "en";
+    const countLabel = isEnglish
+      ? new Intl.NumberFormat("en-US").format(visibleCount)
+      : projectNumberFormat.format(visibleCount);
+    projectResults.textContent = isEnglish
+      ? `${countLabel} project${visibleCount === 1 ? "" : "s"} to explore`
+      : `${countLabel} پروژه برای بررسی`;
   }
   updateProgressBar();
 }
@@ -127,12 +133,12 @@ function createListItems(items, tagName) {
 }
 
 const projectDialogEnglish = {
-  cafe: { index: '01 / DESKTOP SOFTWARE', title: 'Cafe Zero ? orders & accounting', description: 'Desktop software for managing cafe orders, customers, credit and daily expenses.', type: 'Desktop software ? Public repository', features: ['Order registration and preparation queue', 'Customer, credit and loyalty management', 'Expense tracking and daily sales summary'] },
-  mahan: { index: '02 / INTERFACE', title: 'Airline web interface', description: 'An independent travel interface exercise with flight search, destinations and responsive information cards.', type: 'Web interface ? Independent exercise', features: ['Intro page and flight routes', 'Search layout and destination cards', 'Custom styling and project visuals'] },
-  snapp: { index: '03 / INTERFACE', title: 'Snapp interface recreation', description: 'A study in Persian content hierarchy, RTL layout and service presentation.', type: 'Interface recreation ? Independent exercise', features: ['Service introduction page', 'Persian RTL content hierarchy', 'Local project fonts and styles'] },
-  weather: { index: '04 / INTERACTIVE', title: 'Weather app', description: 'An interactive weather experience with city search and current forecast presentation.', type: 'Interactive app ? Practice project', features: ['City search flow', 'Current weather and forecast cards', 'API-ready interaction patterns'] },
-  shop: { index: '05 / WEB INTERACTION', title: 'Product catalogue', description: 'A searchable product list with category filtering and practical DOM interactions.', type: 'Web interaction \u00b7 Practice project', features: ['Text search', 'Category filters', 'Responsive product presentation'] },
-  game: { index: '06 / BROWSER GAME', title: 'Tic-tac-toe game', description: 'A two-player browser game with turn management, win detection and round results.', type: 'Browser game \u00b7 Practice project', features: ['Turn management', 'Winner detection', 'Round result tracking'] }
+  cafe: { index: '01 / DESKTOP SOFTWARE', title: 'Cafe Zero — orders & accounting', description: 'Desktop software for managing cafe orders, customers, credit and daily expenses.', type: 'Desktop software · Public repository', features: ['Order registration and preparation queue', 'Customer, credit and loyalty management', 'Expense tracking and daily sales summary'] },
+  mahan: { index: '02 / INTERFACE', title: 'Airline web interface', description: 'An independent travel interface exercise with flight search, destinations and responsive information cards.', type: 'Web interface · Independent exercise', features: ['Intro page and flight routes', 'Search layout and destination cards', 'Custom styling and project visuals'] },
+  snapp: { index: '03 / INTERFACE', title: 'Snapp interface recreation', description: 'A study in Persian content hierarchy, RTL layout and service presentation.', type: 'Interface recreation · Independent exercise', features: ['Service introduction page', 'Persian RTL content hierarchy', 'Local project fonts and styles'] },
+  weather: { index: '04 / INTERACTIVE', title: 'Weather app', description: 'An interactive weather experience with city search and current forecast presentation.', type: 'Interactive app · Practice project', features: ['City search flow', 'Current weather and forecast cards', 'API-ready interaction patterns'] },
+  shop: { index: '05 / WEB INTERACTION', title: 'Product catalogue', description: 'A searchable product list with category filtering and practical DOM interactions.', type: 'Web interaction · Practice project', features: ['Text search', 'Category filters', 'Responsive product presentation'] },
+  game: { index: '06 / BROWSER GAME', title: 'Tic-tac-toe game', description: 'A two-player browser game with turn management, win detection and round results.', type: 'Browser game · Practice project', features: ['Turn management', 'Winner detection', 'Round result tracking'] }
 };
 
 function openProjectDialog(trigger) {
@@ -226,36 +232,9 @@ updateActiveSection();
 const yearElement = document.querySelector("#year");
 if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-// ========================================
-// SKILLS SECTION ANIMATION
-// ========================================
-
-const skillItems = document.querySelectorAll('.skill-item');
-
-function initializeSkills() {
-  const skillsObserver = "IntersectionObserver" in window ? new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-        skillsObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 }) : null;
-
-  skillItems.forEach((item) => {
-    const progress = item.querySelector('.skill-progress');
-    if (!progress) return;
-    progress.style.setProperty('--progress', `${progress.dataset.progress}%`);
-    if (skillsObserver) skillsObserver.observe(item);
-    else item.classList.add('animate-in');
-  });
-}
-
-initializeSkills();
-
 function initializeScrollReveals() {
   const revealTargets = [...document.querySelectorAll(
-    '.section-heading, .project-card, .about-grid, .approach-item, .contact-panel, .live-editor-container'
+    '.section-heading, .project-card, .skill-chip, .about-grid, .approach-item, .contact-panel, .live-editor-container'
   )];
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -352,40 +331,40 @@ const englishText = {
   '.desktop-nav a[href="#work"]': 'Selected work',
   '.desktop-nav a[href="#about"]': 'About me',
   '.desktop-nav a[href="#approach"]': 'Approach',
-  '.nav-contact': 'Start a project ↗',
+  '.nav-contact': 'Start a project <span aria-hidden="true">↗</span>',
   '.mobile-nav a[href="#work"]': 'Selected work',
   '.mobile-nav a[href="#about"]': 'About me',
   '.mobile-nav a[href="#approach"]': 'Approach',
   '.mobile-nav a[href="#contact"]': 'Start a project',
-  '.hero-eyebrow': 'Amirhossein Mohammadrafie · Software Designer & Developer',
-  '.hero h1': 'I think.<br><em>I design. I build.</em>',
+  '.hero-eyebrow': '<span class="status-dot"></span> Amirhossein Mohammadrafie <span class="eyebrow-line"></span> Software designer &amp; developer',
+  '.hero h1': 'I think.<br />I design.<br /><span>I build.</span><span class="period">✳</span>',
   '.hero-copy>p': 'From web interfaces to practical software, I turn each project into a precise, useful and memorable experience.',
-  '.hero-actions .button': 'View selected work ↙',
-  '.hero-actions .text-link': 'More about me ←',
-  '.scroll-mark': 'Scroll down ↓',
-  '.live-editor-section .section-kicker': 'LIVE CODE · TRY IT YOURSELF',
-  '#live-code-title': 'Write code. See the result.',
+  '.hero-actions .button': 'View selected work <span aria-hidden="true">↙</span>',
+  '.hero-actions .text-link': 'More about me <span aria-hidden="true">←</span>',
+  '.scroll-mark': 'Scroll down <span aria-hidden="true">↓</span>',
+  '.live-editor-section .section-kicker': '<span>LIVE CODE</span><span class="tiny-line"></span> Try it yourself',
+  '#live-code-title': 'Write code. <em>See the result.</em>',
   '.live-editor-section .section-heading p': 'An interactive editor that renders your changes instantly.',
   '.preview-label': 'Live preview',
-  '.skills-section .section-kicker': 'SKILLS · WHAT I USE',
-  '#skills-title': 'Web development, with intention.',
-  '.work-section .section-kicker': '01 / SELECTED WORK · A CURATED SELECTION',
-  '#work-title': 'A few projects,<br><em>a few different experiences.</em>',
+  '.skills-section .section-kicker': '<span>SKILLS</span><span class="tiny-line"></span> What I use',
+  '#skills-title': 'Tools I build <em>with.</em>',
+  '.skills-section .section-heading p': 'Interface design, front-end and application logic that show up in the work above.',
+  '.work-section .section-kicker': '<span>01 / SELECTED WORK</span><span class="tiny-line"></span> A curated selection',
+  '#work-title': 'A few projects, <em>a few different experiences.</em>',
   '.work-section .section-heading p': 'From a cafe management tool to web interfaces and interactive experiments, these projects show how I learn and build.',
-  '.filter[data-filter="all"]': 'All projects 06',
+  '.filter[data-filter="all"]': 'All projects <span>06</span>',
   '.filter[data-filter="software"]': 'Software',
   '.filter[data-filter="interface"]': 'Interface design',
   '.filter[data-filter="javascript"]': 'JavaScript',
-  '#project-results': '6 projects to explore',
   '.project-note': 'These cards are visual representations of selected work. Named projects are independent recreations and exercises, not official collaborations with the referenced brands.',
-  '.about-section .section-kicker': '02 / ABOUT ME · A LITTLE CONTEXT',
-  '#about-title': 'Curiosity is the foundation<br><em>of building.</em>',
+  '.about-section .section-kicker': '<span>02 / ABOUT ME</span><span class="tiny-line"></span> A little context',
+  '#about-title': 'Curiosity is the foundation<br /><em>of building.</em>',
   '.about-lead': 'Hi, I’m Amirhossein — a software engineering student who enjoys designing websites and building useful software.',
   '.about-content>p:not(.about-lead)': 'I balance visual clarity with reliable implementation. Learning across web interfaces, application logic and data is an important part of my path.',
   '.skills-block h3': 'Tools and skills',
-  '.about-footnote': 'Currently studying Computer Engineering · Islamic Azad University · Since 2022',
-  '.approach-section .section-kicker': '03 / APPROACH · HOW I WORK',
-  '#approach-title': 'A good question leads<br><em>to a better output.</em>',
+  '.about-footnote': '<span class="footnote-number">01</span><span>Currently studying Computer Engineering<br /><small>Islamic Azad University · Since 2022</small></span>',
+  '.approach-section .section-kicker': '<span>03 / APPROACH</span><span class="tiny-line"></span> How I work',
+  '#approach-title': 'A good question leads<br /><em>to a better output.</em>',
   '.approach-heading>p': 'I understand the problem first, then shape a clear path from structure to implementation.',
   '.approach-item:nth-child(1) h3': 'Understand the problem',
   '.approach-item:nth-child(1) p': 'We define the goal, audience and project needs.',
@@ -393,10 +372,14 @@ const englishText = {
   '.approach-item:nth-child(2) p': 'I shape the page structure and user experience.',
   '.approach-item:nth-child(3) h3': 'Build and review',
   '.approach-item:nth-child(3) p': 'I implement the interface and test it across screen sizes.',
-  '.contact-kicker': '04 / LET’S TALK · START A PROJECT',
-  '#contact-title': 'Have a project in mind?<br><em>Let’s talk.</em>',
-  '.contact-panel p': 'For web design or software development, send me a message through my Karlancer profile.',
-  '.contact-panel .button': 'Contact me on Karlancer ↗',
+  '.contact-kicker': '<span>04 / LET’S TALK</span><span class="tiny-line"></span> Start a project',
+  '#contact-title': 'Have a project in mind?<br /><em>Let’s talk.</em>',
+  '.contact-panel > p': 'For web design or software development, reach me through the channels below.',
+  '.contact-panel .button': 'Contact me on Karlancer <span aria-hidden="true">↗</span>',
+  '.contact-item[href^="mailto"] .contact-label': 'Email',
+  '.contact-item[href*="t.me"] .contact-label': 'Telegram',
+  '.contact-item[href*="instagram"] .contact-label': 'Instagram',
+  '.contact-item[href*="github"] .contact-label': 'GitHub',
   '.site-footer p': 'Designed and developed with attention to detail.',
   '.site-footer a:last-child': 'Back to top ↑'
 };
@@ -450,6 +433,17 @@ function setProjectEnglish(isEnglish) {
   });
 }
 
+function applyLocalizedCopy(element, text, isEnglish) {
+  const usesMarkup = /<[^>]+>/.test(text);
+  if (isEnglish) {
+    if (!element.dataset.faHtml) element.dataset.faHtml = element.innerHTML;
+    if (usesMarkup) element.innerHTML = text;
+    else element.textContent = text;
+    return;
+  }
+  if (element.dataset.faHtml) element.innerHTML = element.dataset.faHtml;
+}
+
 function setLanguage(language) {
   const isEnglish = language === 'en';
   document.documentElement.lang = isEnglish ? 'en' : 'fa';
@@ -459,24 +453,25 @@ function setLanguage(language) {
   Object.entries(englishText).forEach(([selector, text]) => {
     const element = document.querySelector(selector);
     if (!element) return;
-    if (isEnglish) {
-      if (!element.dataset.faText) element.dataset.faText = element.textContent;
-      element.textContent = text;
-    } else if (element.dataset.faText) {
-      element.textContent = element.dataset.faText;
-    }
+    applyLocalizedCopy(element, text, isEnglish);
+  });
+  document.querySelectorAll('.skill-chip small').forEach((element, index) => {
+    const englishLabels = ['Interface & layout', 'Browser interaction', 'Web apps', 'Desktop software', 'Experience structure', 'Version control'];
+    applyLocalizedCopy(element, englishLabels[index] || element.textContent, isEnglish);
   });
   setProjectEnglish(isEnglish);
   document.querySelectorAll('.dialog-columns>div>span').forEach((element, index) => {
     element.textContent = isEnglish ? (index === 0 ? 'Project type' : 'What was built') : (index === 0 ? '\u0646\u0648\u0639 \u067e\u0631\u0648\u0698\u0647' : '\u0628\u062e\u0634\u200c\u0647\u0627\u06cc \u067e\u06cc\u0627\u062f\u0647\u200c\u0633\u0627\u0632\u06cc');
   });
   const dialogSource = document.querySelector('#dialog-source');
-  if (dialogSource) dialogSource.innerHTML = isEnglish ? 'View code on GitHub <span aria-hidden=\"true\">\u2197</span>' : '\u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u062f \u062f\u0631 GitHub <span aria-hidden=\"true\">\u2197</span>';
+  if (dialogSource) dialogSource.innerHTML = isEnglish ? 'View code on GitHub <span aria-hidden="true">\u2197</span>' : '\u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u062f \u062f\u0631 GitHub <span aria-hidden="true">\u2197</span>';
   const dialogNote = document.querySelector('.dialog-note');
   if (dialogNote) dialogNote.textContent = isEnglish ? 'Details are based on the portfolio files and linked repository.' : '\u0627\u06cc\u0646 \u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u0628\u0631 \u0627\u0633\u0627\u0633 \u0641\u0627\u06cc\u0644\u200c\u0647\u0627\u06cc \u0646\u0645\u0648\u0646\u0647\u200c\u06a9\u0627\u0631 \u0648 \u0645\u062e\u0632\u0646 \u0627\u0631\u0627\u0626\u0647\u200c\u0634\u062f\u0647 \u0646\u0648\u0634\u062a \u0634\u062f\u0647\u200c\u0627\u0646\u062f.';
   languageToggle?.setAttribute('aria-pressed', String(isEnglish));
   if (languageToggle) languageToggle.setAttribute('aria-label', isEnglish ? 'Switch to Persian' : 'Switch to English');
   try { localStorage.setItem(languageStorageKey, language); } catch (error) {}
+  const activeFilter = document.querySelector(".filter.active");
+  if (activeFilter) applyProjectFilter(activeFilter.dataset.filter, activeFilter);
   updateActiveSection();
 }
 

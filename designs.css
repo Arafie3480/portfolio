@@ -455,9 +455,27 @@ body[data-design="studio"] .round-arrow {
   }
 }
 
+@media (max-width: 800px) {
+  body[data-design="studio"] .hero-poster {
+    animation: none;
+  }
+  body[data-design="studio"] .poster-type {
+    font-size: clamp(42px, 12vw, 58px);
+    letter-spacing: -3px;
+    margin-top: 36px;
+  }
+  body[data-design="studio"] .poster-sun {
+    width: 110px;
+    height: 110px;
+    font-size: 72px;
+    left: -28px;
+    bottom: 28px;
+    animation: none;
+  }
+}
+
 @media (max-width: 650px) {
-  .hero-poster { height: 340px; left: 12%; width: 74%; }
-  .poster-type { font-size: 64px; letter-spacing: -4px; }
+  .poster-type { font-size: 44px; letter-spacing: -3px; margin-top: 28px; }
 }
 
 body[data-language="en"] {

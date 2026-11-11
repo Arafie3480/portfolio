@@ -1,25 +1,35 @@
 ﻿# راهنمای دپلوی در GitHub Pages
 
-برای پیش‌نمایش محلی قبل از انتشار، `PREVIEW.md` را ببینید. پوشهٔ `Portfolio_Final_Deploy/` نسخهٔ همگام‌شده برای آپلود است؛ ریشهٔ پروژه منبع اصلی محتواست.
+برای پیش‌نمایش محلی، `PREVIEW.md` را ببینید.
 
-## مراحل:
+## منبع حقیقت
 
-1. یک repository جدید در GitHub بساز (مثلاً portfolio)
+- ریشهٔ پروژه منبع اصلی محتواست (`index.html`, `styles.css`, `designs.css`, `script.js`, `assets/`).
+- دامنهٔ سفارشی از فایل `CNAME` خوانده می‌شود: `devbyamir.com`
+- برنچ `master` = نسخهٔ کامل پروژه روی GitHub
+- برنچ `main` = نسخهٔ منتشرشده برای GitHub Pages (از `Portfolio_Final_Deploy/`)
 
-2. repository رو به پروژه متصل کن:
-   git remote add origin https://github.com/YOUR_USERNAME/portfolio.git
+## انتشار روی لایو
 
-3. فایل‌ها رو push کن:
-   git branch -M main
-   git push -u origin main
+1. تغییرات را در ریشه بزنید و تست کنید: `python -m http.server 8770`
+2. فایل‌های سایت را به `Portfolio_Final_Deploy/` کپی کنید
+3. داخل همان پوشه commit و push روی `main`:
 
-4. در تنظیمات repository:
-   - برو به Settings > Pages
-   - در قسمت Source، branch main رو انتخاب کن
-   - روی Save کلیک کن
+```powershell
+Copy-Item -Force index.html,styles.css,designs.css,script.js,robots.txt,sitemap.xml,CNAME,PREVIEW.md,DEPLOY.md -Destination Portfolio_Final_Deploy\
+Set-Location Portfolio_Final_Deploy
+git add -A
+git commit -m "Ship portfolio update"
+git push origin main
+```
 
-5. سایتت در چند دقیقه در این آدرس منتشر می‌شه:
-   https://YOUR_USERNAME.github.io/portfolio/
+4. چند دقیقه بعد در [https://devbyamir.com](https://devbyamir.com) Hard Refresh بزنید
+
+## بکاپ برنچ master
+
+```powershell
+git push -u origin master
+```
 
 ## گزینه ۲: Vercel (سریع‌تر و حرفه‌ای‌تر)
 

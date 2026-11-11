@@ -159,7 +159,11 @@ body[data-design="studio"] .featured-label {
 
 body[data-design="studio"] .project-card {
   position: relative;
-  overflow: clip;
+  overflow: visible;
+}
+
+body[data-design="studio"] .project-art {
+  overflow: hidden;
 }
 
 body[data-design="studio"] .project-card::after {
@@ -211,13 +215,86 @@ body[data-design="studio"] .hero-panel::after {
   animation: heroAtmosphere 8s ease-in-out infinite;
 }
 
+@property --poster-rx {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -6deg;
+}
+
+@property --poster-x {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --poster-y {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
 body[data-design="studio"] .hero-poster {
-  transition: transform .45s cubic-bezier(.2, .72, .25, 1);
+  --poster-rx: -6deg;
+  --poster-x: 0px;
+  --poster-y: 0px;
+  will-change: transform;
+  transform: rotate(var(--poster-rx)) translate3d(var(--poster-x), var(--poster-y), 0);
+  transition: transform .45s cubic-bezier(.2, .72, .25, 1), box-shadow .45s ease;
+}
+
+body[data-design="studio"] .hero-poster.is-tilting {
+  animation: none !important;
+  transition: transform .12s linear;
+}
+
+body[data-design="studio"] .brand-dot {
+  display: inline-block;
+  color: var(--accent-deep);
+  animation: brandDotPulse 2.4s ease-in-out infinite;
+}
+
+body[data-design="studio"] .contact-spark {
+  animation: sparkBreathe 3.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+body[data-design="studio"] .trust-list li,
+body[data-design="studio"] .skill-chip,
+body[data-design="studio"] .approach-item {
+  transition: transform .28s cubic-bezier(.2, .72, .25, 1), border-color .28s ease, box-shadow .28s ease;
+}
+
+body[data-design="studio"] .outlink,
+body[data-design="studio"] .round-arrow {
+  transition: transform .22s ease, background .2s, border-color .2s;
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  body[data-design="studio"] .hero-panel:hover .hero-poster {
-    transform: rotate(-5deg) translateY(-4px);
+  body[data-design="studio"] .hero-panel:hover .hero-poster:not(.is-tilting) {
+    --poster-rx: -4.5deg;
+    --poster-y: -8px;
+    box-shadow: 22px 28px 0 #34463c, 0 36px 70px #0007;
+  }
+
+  body[data-design="studio"] .hero-halo {
+    animation: haloPulse 7s ease-in-out infinite;
+  }
+
+  body[data-design="studio"] .hero-grid {
+    animation: gridDrift 22s linear infinite;
+  }
+
+  body[data-design="studio"] .hero-poster:not(.is-tilting) {
+    animation: posterFloat 6.2s ease-in-out infinite;
+  }
+
+  body[data-design="studio"] .poster-sun {
+    animation: sunSpin 18s linear infinite;
+  }
+
+  body[data-design="studio"] .scroll-mark span[aria-hidden="true"] {
+    display: inline-block;
+    animation: scrollNudge 1.8s ease-in-out infinite;
   }
 
   body[data-design="studio"] .project-art::before {
@@ -235,6 +312,23 @@ body[data-design="studio"] .hero-poster {
   body[data-design="studio"] .project-art:focus-visible::before {
     transform: translateX(-120%);
   }
+
+  body[data-design="studio"] .trust-list li:hover,
+  body[data-design="studio"] .skill-chip:hover,
+  body[data-design="studio"] .approach-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(20, 26, 30, .08);
+    border-color: color-mix(in srgb, var(--lime) 45%, var(--line));
+  }
+
+  body[data-design="studio"] .outlink:hover,
+  body[data-design="studio"] .round-arrow:hover {
+    transform: translateY(-2px);
+  }
+
+  body[data-design="studio"] .project-card:hover .project-art {
+    transform: translateY(-6px) scale(1.01);
+  }
 }
 
 @keyframes statusPulse {
@@ -250,6 +344,47 @@ body[data-design="studio"] .hero-poster {
 @keyframes heroAtmosphere {
   0%, 100% { opacity: .24; }
   50% { opacity: .56; }
+}
+
+@keyframes posterFloat {
+  0%, 100% {
+    --poster-rx: -6deg;
+    --poster-y: 0px;
+  }
+  50% {
+    --poster-rx: -5deg;
+    --poster-y: -11px;
+  }
+}
+
+@keyframes haloPulse {
+  0%, 100% { transform: scale(1); opacity: .9; }
+  50% { transform: scale(1.045); opacity: 1; }
+}
+
+@keyframes gridDrift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 75px 75px, 75px 75px; }
+}
+
+@keyframes sunSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scrollNudge {
+  0%, 100% { transform: translateY(0); opacity: .85; }
+  50% { transform: translateY(5px); opacity: 1; }
+}
+
+@keyframes brandDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .55; transform: scale(1.15); }
+}
+
+@keyframes sparkBreathe {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: .85; }
+  50% { transform: scale(1.08) rotate(8deg); opacity: 1; }
 }
 
 @keyframes revealLift {
@@ -288,7 +423,14 @@ body[data-design="studio"] .hero-poster {
 
   body[data-design="studio"] .status-dot,
   body[data-design="studio"] .hero-panel::after,
-  body[data-design="studio"] .hero-copy > * {
+  body[data-design="studio"] .hero-copy > *,
+  body[data-design="studio"] .hero-halo,
+  body[data-design="studio"] .hero-grid,
+  body[data-design="studio"] .hero-poster,
+  body[data-design="studio"] .poster-sun,
+  body[data-design="studio"] .scroll-mark span[aria-hidden="true"],
+  body[data-design="studio"] .brand-dot,
+  body[data-design="studio"] .contact-spark {
     animation: none !important;
   }
 }

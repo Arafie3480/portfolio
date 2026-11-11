@@ -484,7 +484,7 @@ img{max-width:100%;display:block}
   margin:0;
 }
 .hero-visual{
-  overflow:hidden;
+  overflow:visible;
   isolation:isolate;
 }
 .project-card[data-depth="deep"]{

@@ -320,14 +320,14 @@ if (yearElement) yearElement.textContent = new Date().getFullYear();
 
 function initializeScrollReveals() {
   const revealTargets = [...document.querySelectorAll(
-    ".section-heading, .project-card, .skill-chip, .trust-list li, .about-grid, .approach-item, .contact-panel, .live-editor-container"
+    ".section-heading, .featured-label, .more-work-heading, .project-card, .skill-chip, .trust-list li, .about-grid, .approach-item, .contact-panel, .live-editor-container"
   )];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!revealTargets.length || reduceMotion || !("IntersectionObserver" in window)) return;
 
   revealTargets.forEach((element, index) => {
     element.dataset.reveal = "";
-    element.style.setProperty("--reveal-delay", `${(index % 4) * 70}ms`);
+    element.style.setProperty("--reveal-delay", `${(index % 5) * 60}ms`);
   });
   document.documentElement.classList.add("reveal-enabled");
 
@@ -343,6 +343,45 @@ function initializeScrollReveals() {
 }
 
 initializeScrollReveals();
+
+function initializeHeroPosterMotion() {
+  const panel = document.querySelector(".hero-panel");
+  const poster = document.querySelector(".hero-poster");
+  if (!panel || !poster) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  let frame = 0;
+
+  function resetPoster() {
+    poster.classList.remove("is-tilting");
+    poster.style.removeProperty("--poster-rx");
+    poster.style.removeProperty("--poster-x");
+    poster.style.removeProperty("--poster-y");
+  }
+
+  function onPointerMove(event) {
+    if (reduceMotion.matches || !finePointer.matches) return;
+    const rect = panel.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width - 0.5;
+    const py = (event.clientY - rect.top) / rect.height - 0.5;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      poster.classList.add("is-tilting");
+      poster.style.setProperty("--poster-rx", `${(-6 + px * 5).toFixed(2)}deg`);
+      poster.style.setProperty("--poster-x", `${(px * 14).toFixed(1)}px`);
+      poster.style.setProperty("--poster-y", `${(py * 12 - 4).toFixed(1)}px`);
+    });
+  }
+
+  panel.addEventListener("pointermove", onPointerMove);
+  panel.addEventListener("pointerleave", resetPoster);
+  reduceMotion.addEventListener("change", () => {
+    if (reduceMotion.matches) resetPoster();
+  });
+}
+
+initializeHeroPosterMotion();
 
 const editorTabs = document.querySelectorAll(".editor-tab");
 const editorPanels = document.querySelectorAll(".editor-panel");
@@ -635,12 +674,32 @@ function setLanguage(language) {
   document.documentElement.dir = isEnglish ? "ltr" : "rtl";
   document.body.dataset.language = language;
   document.body.classList.toggle("is-english", isEnglish);
+  document.title = isEnglish
+    ? "Dev By Amir | Amirhossein Mohammadrafie"
+    : "Dev By Amir | امیرحسین محمدرفیع";
+
+  const descriptionMeta = document.querySelector('meta[name="description"]');
+  if (descriptionMeta) {
+    if (!descriptionMeta.dataset.faContent) descriptionMeta.dataset.faContent = descriptionMeta.content;
+    descriptionMeta.content = isEnglish
+      ? "Dev By Amir — Amirhossein Mohammadrafie. Web interfaces and practical software with a focus on Persian/RTL experience."
+      : descriptionMeta.dataset.faContent;
+  }
 
   Object.entries(englishText).forEach(([selector, text]) => {
     const element = document.querySelector(selector);
     if (!element) return;
     applyLocalizedCopy(element, text, isEnglish);
   });
+
+  const footerCredit = document.querySelector(".site-footer > span");
+  if (footerCredit) {
+    if (!footerCredit.dataset.faHtml) footerCredit.dataset.faHtml = footerCredit.innerHTML;
+    const year = String(new Date().getFullYear());
+    footerCredit.innerHTML = isEnglish
+      ? `© <span id="year">${year}</span> Amirhossein Mohammadrafie`
+      : footerCredit.dataset.faHtml.replace(/>\d{4}</, `>${year}<`);
+  }
 
   document.querySelectorAll(".skill-chip small").forEach((element, index) => {
     const englishLabels = ["Interface & layout", "Browser interaction", "Web apps", "Desktop software", "Experience structure", "Version control"];
@@ -678,6 +737,14 @@ function setLanguage(language) {
     const link = document.querySelector(`.contact-methods ${selector}`);
     if (link) link.setAttribute("aria-label", isEnglish ? en : fa);
   });
+
+  const trustStrip = document.querySelector(".trust-strip");
+  if (trustStrip) {
+    trustStrip.setAttribute("aria-label", isEnglish ? "Trust signals" : "خلاصه اعتماد");
+  }
+  if (closeButton) {
+    closeButton.setAttribute("aria-label", isEnglish ? "Close project details" : "بستن جزئیات پروژه");
+  }
 
   languageToggle?.setAttribute("aria-pressed", String(isEnglish));
   if (languageToggle) languageToggle.setAttribute("aria-label", isEnglish ? "Switch to Persian" : "Switch to English");

@@ -23,3 +23,7 @@ temp/
 
 # Node modules
 node_modules/
+
+# Local archives
+Portfolio*.zip
+

@@ -459,10 +459,12 @@ const languageStorageKey = "portfolio-language";
 const englishText = {
   ".skip-link": "Skip to main content",
   '.desktop-nav a[href="#work"]': "Selected work",
+  '.desktop-nav a[href="#services"]': "Services",
   '.desktop-nav a[href="#about"]': "About me",
   '.desktop-nav a[href="#approach"]': "Approach",
   ".nav-contact": 'Start a project <span aria-hidden="true">↗</span>',
   '.mobile-nav a[href="#work"]': "Selected work",
+  '.mobile-nav a[href="#services"]': "Services",
   '.mobile-nav a[href="#about"]': "About me",
   '.mobile-nav a[href="#approach"]': "Approach",
   '.mobile-nav a[href="#contact"]': "Start a project",
@@ -509,6 +511,27 @@ const englishText = {
   ".approach-item:nth-child(2) p": "I shape the page structure and user experience.",
   ".approach-item:nth-child(3) h3": "Build and review",
   ".approach-item:nth-child(3) p": "I implement the interface and test it across screen sizes.",
+  ".services-section .section-kicker": '<span>SERVICES</span><span class="tiny-line"></span> Services',
+  "#services-title": 'Three ways to work together, <em>with a clear scope.</em>',
+  ".services-heading > p": "If your project fits one of these lanes, we can lock scope, timeline and price faster.",
+  ".service-item:nth-child(1) h3": "WordPress &amp; shops",
+  ".service-item:nth-child(1) > p": "Bug fixes, Elementor builds, corporate tidy-ups, shop troubleshooting and light on-page SEO — with a reviewable handoff.",
+  ".service-item:nth-child(1) li:nth-child(1)": "Elementor and page structure",
+  ".service-item:nth-child(1) li:nth-child(2)": "Hardening and first-pass cleanup",
+  ".service-item:nth-child(1) li:nth-child(3)": "Light on-page SEO",
+  ".service-item:nth-child(1) .service-link": 'Start this lane <span aria-hidden="true">←</span>',
+  ".service-item:nth-child(2) h3": "Landing &amp; RTL web",
+  ".service-item:nth-child(2) > p": "Product or company intro pages with clear hierarchy, mobile-first layout and Persian/RTL support.",
+  ".service-item:nth-child(2) li:nth-child(1)": "HTML / CSS / JavaScript",
+  ".service-item:nth-child(2) li:nth-child(2)": "Responsive layout",
+  ".service-item:nth-child(2) li:nth-child(3)": "Clear CTA and user path",
+  ".service-item:nth-child(2) .service-link": 'Start this lane <span aria-hidden="true">←</span>',
+  ".service-item:nth-child(3) h3": "Small practical tools",
+  ".service-item:nth-child(3) > p": "Dashboards, workflow forms or light order/customer software — in the same spirit as Cafe Zero.",
+  ".service-item:nth-child(3) li:nth-child(1)": "Light web or desktop",
+  ".service-item:nth-child(3) li:nth-child(2)": "Simple, extensible logic",
+  ".service-item:nth-child(3) li:nth-child(3)": "Minimal useful scope on delivery",
+  ".service-item:nth-child(3) .service-link": 'Start this lane <span aria-hidden="true">←</span>',
   ".live-editor-section .section-kicker": '<span>LIVE PROOF</span><span class="tiny-line"></span> Interaction proof',
   "#live-code-title": 'Change the code; <em>see the result.</em>',
   ".live-proof-actions > p": "A small editor to show front-end feedback speed — not a replacement for selected work.",
@@ -516,8 +539,8 @@ const englishText = {
   ".editor-run-btn": "Run",
   ".contact-kicker": '<span>04 / LET’S TALK</span><span class="tiny-line"></span> Start a project',
   "#contact-title": 'Have a project in mind?<br /><em>Let’s talk.</em>',
-  ".contact-scope": "Projects I take on: Persian/RTL web design and build, product intro interfaces, and small-to-medium practical software.",
-  ".contact-panel > p:not(.contact-scope)": "To start a collaboration, message me on Karlancer or use the channels below.",
+  ".contact-scope": "Projects I take on: WordPress and shops, Persian/RTL landing pages, and small-to-medium practical software.",
+  ".contact-panel > p:not(.contact-scope)": "To start a collaboration, message me on Karlancer or use the channels below. Full portfolio: devbyamir.com",
   ".contact-panel .button": 'Contact me on Karlancer <span aria-hidden="true">↗</span>',
   '.contact-item[href^="mailto"] .contact-label': "Email",
   '.contact-item[href*="t.me"] .contact-label': "Telegram",
@@ -702,7 +725,16 @@ function setLanguage(language) {
   }
 
   document.querySelectorAll(".skill-chip small").forEach((element, index) => {
-    const englishLabels = ["Interface & layout", "Browser interaction", "Web apps", "Desktop software", "Experience structure", "Version control"];
+    const englishLabels = [
+      "Interface & layout",
+      "Browser interaction",
+      "Web apps",
+      "Corporate & shop sites",
+      "Practical software",
+      "Desktop logic",
+      "Experience structure",
+      "Version control"
+    ];
     applyLocalizedCopy(element, englishLabels[index] || element.textContent, isEnglish);
   });
 

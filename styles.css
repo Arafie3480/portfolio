@@ -923,3 +923,105 @@ body.is-english .live-proof-actions p {
   .featured-label { margin-bottom: 14px; }
   .more-work { margin-top: 36px; }
 }
+
+/* Services — same rhythm as approach, not card-stack marketing */
+.services-section {
+  background: #eef2ea;
+}
+.services-heading {
+  margin-bottom: 38px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #cdd5ca;
+}
+.service-item {
+  padding: 29px 28px 28px 0;
+  border-left: 1px solid #cdd5ca;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.service-item:last-child {
+  border-left: 0;
+}
+.service-index {
+  font: 700 12px Arial, sans-serif;
+  color: #8aa365;
+  direction: ltr;
+  text-align: right;
+}
+.service-item h3 {
+  font-size: 18px;
+  margin: 4px 0 0;
+}
+.service-item > p {
+  font-size: 13px;
+  color: #66736a;
+  line-height: 2;
+  margin: 0;
+  max-width: 320px;
+}
+.service-item ul {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.service-item li {
+  font-size: 12px;
+  color: #4f5d55;
+  font-weight: 600;
+  padding-right: 14px;
+  position: relative;
+}
+.service-item li::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8aa365;
+}
+.service-link {
+  margin-top: auto;
+  padding-top: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2f4a34;
+}
+.service-link:hover {
+  color: #548450;
+}
+body.is-english .service-index,
+body.is-english .service-item li {
+  text-align: left;
+}
+body.is-english .service-item li {
+  padding-right: 0;
+  padding-left: 14px;
+}
+body.is-english .service-item li::before {
+  right: auto;
+  left: 0;
+}
+@media (max-width: 800px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-item {
+    border-left: 0;
+    border-bottom: 1px solid #cdd5ca;
+    min-height: 0;
+    padding: 23px 0;
+  }
+  .service-item:last-child {
+    border-bottom: 0;
+  }
+}
